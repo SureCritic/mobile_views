@@ -1,6 +1,4 @@
 module MobileViews
   require "action_controller"
-  Mime::Type.register_alias "text/html", :mobile_html
+  require "mobile_views/engine"
 end
-
-require "mobile_views/engine"

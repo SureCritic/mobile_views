@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   
   s.authors       = ["Patrick Bartels"]
   s.email         = %q{patrick@bartels.ug}
-  s.homepage      = %q{http://bartels.ug}
+  s.homepage      = %q{https://github.com/roughneck/mobile_views}
   s.description   = "MobileViews description."
   s.summary       = "MobileViews summary."
   
