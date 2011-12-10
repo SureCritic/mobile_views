@@ -1,7 +1,7 @@
 MobileViews
 ==============
 
-MobileViews redirects from www.example.com to m.example.com and renders a mobile_html instead of html files.
+MobileViews redirects from www.example.com to m.example.com and renders a mobile instead of html files.
 
 Compability
 ===========
@@ -12,18 +12,18 @@ Installation and Usage
 ======================
 
 * Add to your Gemfile:
-  gem "mobile_views"
+
+    gem "mobile_views"
 
 * Run:
-  bundle install
+
+    bundle install
 
 * Add to your controller
-  before_filter :has_mobile_view
 
-* Create
-  application.mobile_html.*
-  and accordingly all views e.g.
-  index.mobile_html.*
+    before_filter :has_mobile_view
+
+* Create application.mobile.* and accordingly all views e.g. index.mobile.*
 
 * Restart server if running
 
