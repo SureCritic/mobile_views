@@ -31,7 +31,7 @@ module MobileViewsController
         end
       end
       session[MobileViews.mobile_mode_session_var] = params[:mobile] if params[MobileViews.mobile_mode_session_var]
-      request.format = :mobile if mobile_device?
+      request.format = :mobile if on_mobile_host? || mobile_device?
     end
   
   end
