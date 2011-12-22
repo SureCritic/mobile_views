@@ -13,6 +13,11 @@ module MobileViews
       end
     end
 
+    def self.config(&block)
+      @@config ||= MobileViews::Engine::Configuration.new
+      yield @@config if block
+      @@config
+    end
   end
 
 end
