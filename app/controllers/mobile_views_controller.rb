@@ -27,7 +27,10 @@ module MobileViewsController
         if request.host =~ /\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b|localhost/
           raise Exception, "Can't redirect to subdomain 'm.#{request.host}'! Please use e.g. lvh.me"
         else
-          redirect_to "#{request.protocol}#{MobileViews.mobile_subdomain}.#{request.host_with_port}#{request.fullpath}"
+          domain = request.host.split('.')
+          domain = (domain[-2..-1] || domain).join('.') # handles single domain name eg localhost (even though that particular case is excluded above)
+          port = ":#{request.port}" unless [80,443].include?(request.port)
+          redirect_to "#{request.protocol}#{MobileViews.mobile_subdomain}.#{domain}#{port}#{request.fullpath}"
         end
       end
       session[MobileViews.mobile_mode_session_var] = params[:mobile] if params[MobileViews.mobile_mode_session_var]
