@@ -9,24 +9,28 @@ module MobileViewsController
   end
 
   module InstanceMethods
-    
+
     def mobile_device?
-      if session[:mobile]
-        session[:mobile] == "1"
+      if session[MobileViews.mobile_mode_session_var]
+        session[MobileViews.mobile_mode_session_var] == "1"
       else
         request.user_agent =~ /Mobile|webOS/
       end
     end
-  
+
+    def on_mobile_host?
+      request.subdomain == MobileViews.mobile_subdomain
+    end
+
     def has_mobile_views
-      if request.subdomain != 'm' && mobile_device?
+      if !on_mobile_host? && mobile_device?
         if request.host =~ /\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b|localhost/
           raise Exception, "Can't redirect to subdomain 'm.#{request.host}'! Please use e.g. lvh.me"
         else
-          redirect_to request.protocol + "m." + request.host_with_port + request.fullpath
+          redirect_to "#{request.protocol}#{MobileViews.mobile_subdomain}.#{request.host_with_port}#{request.fullpath}"
         end
       end
-      session[:mobile] = params[:mobile] if params[:mobile]
+      session[MobileViews.mobile_mode_session_var] = params[:mobile] if params[MobileViews.mobile_mode_session_var]
       request.format = :mobile if mobile_device?
     end
   
