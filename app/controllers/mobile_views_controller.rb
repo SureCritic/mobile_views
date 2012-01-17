@@ -3,7 +3,8 @@ module MobileViewsController
   module ClassMethods
   
     def has_mobile_views(args={})
-      before_filter :has_mobile_views
+      filter_args = args.select {|k,v| %w(only except).include?(k.to_s)}
+      before_filter :has_mobile_views, filter_args
     end
   
   end
