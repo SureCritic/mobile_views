@@ -15,7 +15,7 @@ module MobileViewsController
       if session[MobileViews.mobile_mode_session_var]
         session[MobileViews.mobile_mode_session_var] == "1"
       else
-        request.user_agent =~ /Mobile|webOS/
+        request.user_agent =~ MobileViews.mobile_user_agent_regex && request.user_agent !~ MobileViews.mobile_user_agent_exception_regex
       end
     end
 
