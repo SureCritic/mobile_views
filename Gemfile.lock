@@ -95,5 +95,5 @@ PLATFORMS
 
 DEPENDENCIES
   capybara (>= 0.4.0)
-  rails (= 3.0.9)
+  rails (>= 3.0.9)
   sqlite3
