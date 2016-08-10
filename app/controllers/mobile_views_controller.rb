@@ -4,7 +4,7 @@ module MobileViewsController
   
     def has_mobile_views(args={})
       filter_args = args.select {|k,v| %w(only except).include?(k.to_s)}
-      before_filter :has_mobile_views, filter_args
+      before_action :has_mobile_views, filter_args
     end
   
   end
